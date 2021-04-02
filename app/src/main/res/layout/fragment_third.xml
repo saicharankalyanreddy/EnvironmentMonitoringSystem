@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="light intensity"
+                android:hint="Light intensity(in LUX)"
                 android:text="0"
                 android:drawableLeft="@drawable/ic_baseline_highlight_24"
                 android:drawablePadding="15dp"
@@ -44,9 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/seekbar3"
-            android:max="100"
+            android:max="255"
             android:progress="50"
-
             android:min="0"
             />
 
