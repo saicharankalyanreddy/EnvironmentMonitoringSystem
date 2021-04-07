@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Secondfragment extends Fragment {
     View view;
     SeekBar s2;
-    EditText li2;
+    MaterialTextView li2;
     int pc=0;
 
 
@@ -51,29 +51,12 @@ public class Secondfragment extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float lv = Float.parseFloat(li2.getText().toString());
+                float lv = s2.getProgress();
 
-                database.getReference().child("li2").setValue(lv);
+               // database.getReference().child("li2").setValue(lv);
             }
         });
 
-        s2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                pc=i;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-                li2.setText(String.valueOf(pc));
-            }
-        });
 
 
 
@@ -119,8 +102,8 @@ public class Secondfragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue()!=null) {
-                    s2.setProgress(Integer.parseInt(snapshot.getValue().toString()));
-                    li2.setText(snapshot.getValue().toString());
+                   // s2.setProgress(Integer.parseInt(snapshot.getValue().toString()));
+                    li2.setText(snapshot.getValue().toString()+" LUX");
                 }
                 else{
                     s2.setProgress(0);

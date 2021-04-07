@@ -24,7 +24,7 @@ public class Component_1 extends Fragment {
     MaterialTextView h1;
     MaterialTextView t1;
     SeekBar s1;
-    EditText li1;
+    MaterialTextView li1;
     int pc=0;
     FirebaseDatabase database;
     Button b1;
@@ -53,31 +53,14 @@ public class Component_1 extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float lv = Float.parseFloat(li1.getText().toString());
+                float lv = s1.getProgress();
 
-                database.getReference().child("li1").setValue(lv);
+                //database.getReference().child("li1").setValue(lv);
             }
         });
 
 
-        s1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                pc=i;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-                li1.setText(String.valueOf(pc));
-            }
-        });
 
         return view;
     }
@@ -121,8 +104,8 @@ public class Component_1 extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue()!=null) {
-                    s1.setProgress(Integer.parseInt(snapshot.getValue().toString()));
-                    li1.setText(snapshot.getValue().toString());
+                    //s1.setProgress(Integer.parseInt(snapshot.getValue().toString()));
+                    li1.setText(snapshot.getValue().toString()+" LUX");
                 }
                 else{
                     s1.setProgress(0);

@@ -24,15 +24,13 @@ import com.google.firebase.database.ValueEventListener;
 public class ThirdFragment extends Fragment {
     View view;
     SeekBar s3;
-    EditText li3;
+    MaterialTextView li3;
     int pc=0;
-
     MaterialTextView h3;
     MaterialTextView t3;
     FirebaseDatabase database;
-
-
     Button b3;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,30 +48,12 @@ public class ThirdFragment extends Fragment {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float lv = Float.parseFloat(li3.getText().toString());
+                float lv = s3.getProgress();
 
-                database.getReference().child("li3").setValue(lv);
+               // database.getReference().child("li3").setValue(lv);
             }
         });
 
-        s3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                pc=i;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-                li3.setText(String.valueOf(pc));
-
-            }
-        });
         return view;
     }
 
@@ -115,8 +95,8 @@ public class ThirdFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getValue()!=null) {
-                    s3.setProgress(Integer.parseInt(snapshot.getValue().toString()));
-                    li3.setText(snapshot.getValue().toString());
+                    //s3.setProgress(Integer.parseInt(snapshot.getValue().toString()));
+                    li3.setText(snapshot.getValue().toString()+" LUX");
                 }
                 else{
                     s3.setProgress(0);
